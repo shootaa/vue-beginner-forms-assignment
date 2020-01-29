@@ -13,6 +13,23 @@
           3. Make the Data Display below only be visible after the form has been submitted
              and make it display all the submitted data
         -->
+        <label for="product-name">
+          Product Name
+        </label>
+
+        <label for="product-brand">
+          Product Brand
+        </label>
+
+        <label for="product-color-black">
+          Black
+        </label>
+
+        <label for="product-color-white">
+          White
+        </label>
+
+        <button @click.prevent="submitForm">Submit</button>
       </form>
 
       <div class="data-display">
@@ -48,12 +65,21 @@
 
 <script>
 export default {
-  name: "app"
+  name: "app",
+  methods: {
+    submitForm() {}
+  }
 };
 </script>
 
 <style lang="scss">
 $border: #dcdcdc;
+
+body {
+  * {
+    box-sizing: border-box;
+  }
+}
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -76,8 +102,45 @@ $border: #dcdcdc;
     padding: 15px 30px;
   }
 
+  form {
+    input[type="text"] {
+      width: 100%;
+      max-width: 100%;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid $border;
+      padding: 5px 15px;
+      margin: 5px 0 15px;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    input {
+      transition: 0.3s ease;
+
+      &:hover {
+        border-color: #000000;
+      }
+    }
+
+    button {
+      width: 100%;
+      height: 30px;
+      border: 1px solid $border;
+      margin: 30px 0 5px;
+      transition: 0.3s ease;
+
+      &:hover {
+        border-color: #000000;
+      }
+    }
+  }
+
   .data-display {
-    max-height: 225px;
+    max-height: 300px;
 
     .data-container {
       .title {
