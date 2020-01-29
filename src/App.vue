@@ -1,64 +1,88 @@
 <template>
   <div id="app">
     <div class="container">
-      <form>
-        <!--
-          1. Create a product registration form where you have the following fields:
-            - Product name (input text)
-            - Product's Brand (input text)
-            - Price (input text)
-            - Colors: Black or White (radio button)
-
-          2. Only display the form if it has not been submitted yet
-          3. Make the Data Display below only be visible after the form has been submitted
-             and make it display all the submitted data
-        -->
+      <form v-if="!isSubmitted">
         <label for="product-name">
           Product Name
+          <input
+            id="product-name"
+            name="product-name"
+            type="text"
+            placeholder="Product name"
+            v-model="product.name"
+          />
         </label>
 
         <label for="product-brand">
           Product Brand
+          <input
+            id="product-brand"
+            name="product-brand"
+            type="text"
+            placeholder="Product brand"
+            v-model="product.brand"
+          />
         </label>
 
         <label for="product-price">
           Product Price
+          <input
+            id="product-price"
+            name="product-price"
+            type="text"
+            placeholder="Product price"
+            v-model="product.price"
+          />
         </label>
 
         <label for="product-color-black">
           Black
+          <input
+            id="product-color-black"
+            name="product-color-black"
+            type="radio"
+            value="Black"
+            v-model="product.color"
+          />
         </label>
 
         <label for="product-color-white">
           White
+          <input
+            id="product-color-white"
+            name="product-color-white"
+            type="radio"
+            value="White"
+            v-model="product.color"
+          />
         </label>
 
         <button @click.prevent="submitForm">Submit</button>
       </form>
 
-      <div class="data-display">
+      <div class="data-display" v-if="isSubmitted">
         <div class="data-container">
           <h2 class="title">Submitted Data</h2>
 
           <div class="data-content">
             <p>
               <span>Product Name:</span>
-              <!-- Display the product Nname here -->
+              {{ product.name }}
             </p>
 
             <p>
               <span>Product Brand:</span>
-              <!-- Display the product brand here -->
+              {{ product.brand }}
             </p>
 
             <p>
               <span>Product Price:</span>
-              <!-- Display the product price here -->
+              {{ product.price }}
             </p>
 
             <p>
               <span>Product Color:</span>
-              <!-- Display the Product color here-->
+              {{ product.color }}
             </p>
           </div>
         </div>
@@ -70,8 +94,21 @@
 <script>
 export default {
   name: "app",
+  data() {
+    return {
+      isSubmitted: false,
+      product: {
+        name: "",
+        brand: "",
+        price: "",
+        color: ""
+      }
+    };
+  },
   methods: {
-    submitForm() {}
+    submitForm() {
+      this.isSubmitted = true;
+    }
   }
 };
 </script>
@@ -124,7 +161,7 @@ body {
 
     input {
       transition: 0.3s ease;
-      
+
       &:hover {
         border-color: #000000;
       }
