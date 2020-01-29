@@ -21,6 +21,10 @@
           Product Brand
         </label>
 
+        <label for="product-price">
+          Product Price
+        </label>
+
         <label for="product-color-black">
           Black
         </label>
