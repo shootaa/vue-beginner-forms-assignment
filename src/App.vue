@@ -124,7 +124,7 @@ body {
 
     input {
       transition: 0.3s ease;
-
+      
       &:hover {
         border-color: #000000;
       }
@@ -144,7 +144,7 @@ body {
   }
 
   .data-display {
-    max-height: 300px;
+    max-height: 250px;
 
     .data-container {
       .title {
