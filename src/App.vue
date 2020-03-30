@@ -13,51 +13,47 @@
           3. Make the Data Display below only be visible after the form has been submitted
              and make it display all the submitted data
         -->
-        <label for="product-name">
-          Product Name
-        </label>
-
-        <label for="product-brand">
-          Product Brand
-        </label>
-
-        <label for="product-price">
-          Product Price
-        </label>
-
-        <label for="product-color-black">
-          Black
-        </label>
-
-        <label for="product-color-white">
-          White
-        </label>
-
+        <label for="product-name">Product Name</label>
+        <input id="product-name" type="text" v-model="form.productName" />
+        <label for="product-brand">Product Brand</label>
+        <input id="product-brand" type="text" v-model="form.productBrand" />
+        <label for="product-price">Product Price</label>
+        <input id="product-price" type="text" v-model="form.productPrice" />
+        <label for="product-color-black">Black</label>
+        <input id="product-color-black" type="radio" value="Black" v-model="form.productColor" />
+        <label
+          for="product-color-white"
+        >White</label>
+        <input id="product-color-white" type="radio" value="White" v-model="form.productColor" />
         <button @click.prevent="submitForm">Submit</button>
       </form>
 
-      <div class="data-display">
+      <div class="data-display" v-if="isSubmitted">
         <div class="data-container">
           <h2 class="title">Submitted Data</h2>
 
           <div class="data-content">
             <p>
               <span>Product Name:</span>
+              {{form.productName}}
               <!-- Display the product Nname here -->
             </p>
 
             <p>
               <span>Product Brand:</span>
+              {{form.productBrand}}
               <!-- Display the product brand here -->
             </p>
 
             <p>
               <span>Product Price:</span>
+              {{form.productPrice}}
               <!-- Display the product price here -->
             </p>
 
             <p>
               <span>Product Color:</span>
+              {{form.productColor}}
               <!-- Display the Product color here-->
             </p>
           </div>
@@ -70,8 +66,22 @@
 <script>
 export default {
   name: "app",
+  data() {
+    return {
+      isSubmitted: false,
+      form: {
+        productName: "",
+        productBrand: "",
+        productPrice: "",
+        productColor: "",
+        
+      }
+    };
+  },
   methods: {
-    submitForm() {}
+    submitForm() {
+      this.isSubmitted = true;
+    }
   }
 };
 </script>
@@ -124,7 +134,7 @@ body {
 
     input {
       transition: 0.3s ease;
-      
+
       &:hover {
         border-color: #000000;
       }
