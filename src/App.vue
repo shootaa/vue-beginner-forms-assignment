@@ -13,18 +13,27 @@
           3. Make the Data Display below only be visible after the form has been submitted
              and make it display all the submitted data
         -->
-        <label for="product-name">Product Name</label>
-        <input id="product-name" type="text" v-model="form.productName" />
-        <label for="product-brand">Product Brand</label>
-        <input id="product-brand" type="text" v-model="form.productBrand" />
-        <label for="product-price">Product Price</label>
-        <input id="product-price" type="text" v-model="form.productPrice" />
+        <productName  v-model="form.productName"></productName>
+        <productBrand v-model="form.productBrand"></productBrand>
+        <productPrice v-model="form.productPrice"></productPrice>
+        <productColor v-model="form.productColor"></productColor>
+        
         <label for="product-color-black">Black</label>
-        <input id="product-color-black" type="radio" value="Black" v-model="form.productColor" />
-        <label
-          for="product-color-white"
-        >White</label>
-        <input id="product-color-white" type="radio" value="White" v-model="form.productColor" />
+        <input
+          id="product-color-black"
+          type="radio"
+          value="Black"
+          :checked="'Black' === form.productColor"
+          @change="form.productColor = $event.target.value"
+        />
+        <label for="product-color-white">White</label>
+        <input
+          id="product-color-white"
+          type="radio"
+          value="White"
+          :checked="'White' === form.productColor"
+          @change="form.productColor = $event.target.value"
+        />
         <button @click.prevent="submitForm">Submit</button>
       </form>
 
@@ -35,25 +44,25 @@
           <div class="data-content">
             <p>
               <span>Product Name:</span>
-              {{form.productName}}
+              {{ form.productName }}
               <!-- Display the product Nname here -->
             </p>
 
             <p>
               <span>Product Brand:</span>
-              {{form.productBrand}}
+              {{ form.productBrand }}
               <!-- Display the product brand here -->
             </p>
 
             <p>
               <span>Product Price:</span>
-              {{form.productPrice}}
+              {{ form.productPrice }}
               <!-- Display the product price here -->
             </p>
 
             <p>
               <span>Product Color:</span>
-              {{form.productColor}}
+              {{ form.productColor }}
               <!-- Display the Product color here-->
             </p>
           </div>
@@ -64,8 +73,18 @@
 </template>
 
 <script>
+import productBrand from "./productBrand.vue";
+import productName from "./productName.vue";
+import productPrice from "./productPrice"
+import productColor from "./productColor"
 export default {
   name: "app",
+  components: {
+    productName,
+    productBrand,
+    productPrice,
+    
+  },
   data() {
     return {
       isSubmitted: false,
@@ -73,8 +92,7 @@ export default {
         productName: "",
         productBrand: "",
         productPrice: "",
-        productColor: "",
-        
+        productColor: ""
       }
     };
   },
@@ -162,7 +180,7 @@ body {
       }
 
       p {
-        & > span {
+        & span {
           font-weight: bold;
         }
       }
